@@ -18,9 +18,15 @@
     <ClInclude Include="CalApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CalUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CalUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
