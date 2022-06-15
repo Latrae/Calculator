@@ -1,5 +1,22 @@
 #pragma once
-class ButtonFactory
+#include "wx/wx.h"
+#include "CalUI.h"
+
+class ButtonFactory : public wxFrame
 {
+
+public:
+	ButtonFactory();
+	~ButtonFactory();
+
+
+public:
+	wxButton* m_btn = nullptr;
+	wxTextCtrl* m_text1 = nullptr;
+
+	wxButton* CreateAddButton();
+	wxButton* CreateMinusButton();
+	wxButton* CreateMultiplyButton();
+	wxButton* CreateDivideButton();
 };
 

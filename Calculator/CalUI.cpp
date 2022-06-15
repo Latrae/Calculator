@@ -1,4 +1,5 @@
 #include "CalUI.h"
+#include "ButtonFactory.h"
 
 wxBEGIN_EVENT_TABLE(CalUI, wxFrame)
 	EVT_BUTTON(wxID_ANY, onButtonClicked)
@@ -6,9 +7,25 @@ wxEND_EVENT_TABLE()
 
 CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSize(700, 500))
 {
+
+	//m_btn = ButtonFactory::ButtonFactory().CreateAddButton();
+	//m_btn = ButtonFactory::ButtonFactory().CreateMinusButton();
+	//m_btn = ButtonFactory::ButtonFactory().CreateMultiplyButton();
+	//m_btn = ButtonFactory::ButtonFactory().CreateDivideButton();
+
+	int ID = 10001;
+	for (int y = 250; y >= 150; y - 50)
+	{
+		for (int x  = 50; x <= 150; x + 50)
+		{
+			//m_btn = new wxButton(this, ID++, std::to_string((ID++) - 10000), wxPoint(x, y), wxSize(40, 30));
+		}
+	}
+
+
 	//Numbers
 	m_btn = new wxButton(this, 10000, "0", wxPoint(50, 300), wxSize(70, 30));
-	m_btn = new wxButton(this, 10001, "1", wxPoint(50, 250), wxSize(40, 30));
+	/*m_btn = new wxButton(this, 10001, "1", wxPoint(50, 250), wxSize(40, 30));
 	m_btn = new wxButton(this, 10002, "2", wxPoint(100, 250), wxSize(40, 30));
 	m_btn = new wxButton(this, 10003, "3", wxPoint(150, 250), wxSize(40, 30));
 	m_btn = new wxButton(this, 10004, "4", wxPoint(50, 200), wxSize(40, 30));
@@ -16,18 +33,17 @@ CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSiz
 	m_btn = new wxButton(this, 10006, "6", wxPoint(150, 200), wxSize(40, 30));
 	m_btn = new wxButton(this, 10007, "7", wxPoint(50, 150), wxSize(40, 30));
 	m_btn = new wxButton(this, 10008, "8", wxPoint(100, 150), wxSize(40, 30));
-	m_btn = new wxButton(this, 10009, "9", wxPoint(150, 150), wxSize(40, 30));
+	m_btn = new wxButton(this, 10009, "9", wxPoint(150, 150), wxSize(40, 30));*/
 
 	//Clear and enter
 	m_btn = new wxButton(this, 10010, "C", wxPoint(7, 100), wxSize(40, 30));
 	m_btn = new wxButton(this, 10011, "=", wxPoint(125, 290), wxSize(65, 40));
 
 	//Modifiers
-	m_btn = new wxButton(this, 10012, "+", wxPoint(200, 100), wxSize(40, 30));
-	m_btn = new wxButton(this, 10013, "-", wxPoint(200, 150), wxSize(40, 30));
-	m_btn = new wxButton(this, 10014, "*", wxPoint(200, 200), wxSize(40, 30));
-	m_btn = new wxButton(this, 10015, "/", wxPoint(200, 250), wxSize(40, 30));
-
+	//m_btn = new wxButton(this, 10012, "+", wxPoint(200, 100), wxSize(40, 30));
+	//m_btn = new wxButton(this, 10013, "-", wxPoint(200, 150), wxSize(40, 30));
+	//m_btn = new wxButton(this, 10014, "*", wxPoint(200, 200), wxSize(40, 30));
+	//m_btn = new wxButton(this, 10015, "/", wxPoint(200, 250), wxSize(40, 30));
 
 	//mod and parenthesis
 	m_btn = new wxButton(this, 10016, "mod", wxPoint(50, 100), wxSize(40, 30));
@@ -46,12 +62,10 @@ CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSiz
 	//Blank Button
 	m_btn = new wxButton(this, 10024, "", wxPoint(400, 400), wxSize(0, 0));
 
-
 	//Text box
 	m_text1 = new wxTextCtrl(this, wxID_ANY, "", wxPoint(10, 65), wxSize(300, 30));
 
 	//m_text1 = new wxTextEntry();//this, wxID_ANY, "", wxPoint(10, 70), wxSize(300, 30));
-
 	
 	m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
 }
@@ -61,9 +75,8 @@ CalUI::~CalUI()
 	//delete[]btn;
 }
 
+
 //On button click
-
-
 void CalUI::onButtonClicked(wxCommandEvent& evt)
 {
 
