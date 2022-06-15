@@ -1,5 +1,8 @@
 #include "ButtonFactory.h"
 
+wxBEGIN_EVENT_TABLE(ButtonFactory, wxFrame)
+	EVT_BUTTON(wxID_ANY, CalUI::onButtonClicked)
+wxEND_EVENT_TABLE()
 
 ButtonFactory::ButtonFactory() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSize(700, 500))
 {
@@ -7,19 +10,11 @@ ButtonFactory::ButtonFactory() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoin
 	ButtonFactory::CreateMinusButton();
 	ButtonFactory::CreateMultiplyButton();
 	ButtonFactory::CreateDivideButton();
+	ButtonFactory::CreateNumbers();
+	ButtonFactory::CreateTextBox();
+	ButtonFactory::CreateSolvers();
 
-	/*//Numbers
-	m_btn = new wxButton(this, 10000, "0", wxPoint(50, 300), wxSize(70, 30));
-	m_btn = new wxButton(this, 10001, "1", wxPoint(50, 250), wxSize(40, 30));
-	m_btn = new wxButton(this, 10002, "2", wxPoint(100, 250), wxSize(40, 30));
-	m_btn = new wxButton(this, 10003, "3", wxPoint(150, 250), wxSize(40, 30));
-	m_btn = new wxButton(this, 10004, "4", wxPoint(50, 200), wxSize(40, 30));
-	m_btn = new wxButton(this, 10005, "5", wxPoint(100, 200), wxSize(40, 30));
-	m_btn = new wxButton(this, 10006, "6", wxPoint(150, 200), wxSize(40, 30));
-	m_btn = new wxButton(this, 10007, "7", wxPoint(50, 150), wxSize(40, 30));
-	m_btn = new wxButton(this, 10008, "8", wxPoint(100, 150), wxSize(40, 30));
-	m_btn = new wxButton(this, 10009, "9", wxPoint(150, 150), wxSize(40, 30));
-
+	/*
 	//Clear and enter
 	m_btn = new wxButton(this, 10010, "C", wxPoint(7, 100), wxSize(40, 30));
 	m_btn = new wxButton(this, 10011, "=", wxPoint(125, 290), wxSize(65, 40));
@@ -54,14 +49,19 @@ ButtonFactory::ButtonFactory() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoin
 
 	//m_text1 = new wxTextEntry();//this, wxID_ANY, "", wxPoint(10, 70), wxSize(300, 30));
 
+	*/
+	//m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
+}
 
-	m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);*/
+ButtonFactory::~ButtonFactory()
+{
+
 }
 
 wxButton* ButtonFactory::CreateAddButton()
 {
 	m_btn = new wxButton(this, 10012, "+", wxPoint(200, 100), wxSize(40, 30));
-	m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
+	//m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
 
 	return m_btn;
 }
@@ -71,7 +71,7 @@ wxButton* ButtonFactory::CreateAddButton()
 wxButton* ButtonFactory::CreateMinusButton()
 {
 	m_btn = new wxButton(this, 10013, "-", wxPoint(200, 150), wxSize(40, 30));
-	m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
+	//m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
 
 	return m_btn;
 }
@@ -79,7 +79,7 @@ wxButton* ButtonFactory::CreateMinusButton()
 wxButton* ButtonFactory::CreateMultiplyButton()
 {
 	m_btn = new wxButton(this, 10014, "*", wxPoint(200, 200), wxSize(40, 30));
-	m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
+	//m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
 
 	return m_btn;
 }
@@ -87,7 +87,36 @@ wxButton* ButtonFactory::CreateMultiplyButton()
 wxButton* ButtonFactory::CreateDivideButton()
 {
 	m_btn = new wxButton(this, 10015, "/", wxPoint(200, 250), wxSize(40, 30));
-	m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
+	//m_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CalUI::onButtonClicked, this);
 
 	return m_btn;
+}
+
+wxButton* ButtonFactory::CreateNumbers()
+{
+	int ID = 10001;
+	for (int y = 250; y >= 150; y = y - 50)
+	{
+		for (int x = 50; x <= 150; x = x + 50)
+		{
+			m_btn = new wxButton(this, ID++, std::to_string((ID)-10000), wxPoint(x, y), wxSize(40, 30));
+		}
+	}
+
+	return m_btn;
+}
+
+wxButton* ButtonFactory::CreateSolvers()
+{
+	m_btn = new wxButton(this, 10010, "C", wxPoint(7, 100), wxSize(40, 30));
+	m_btn = new wxButton(this, 10011, "=", wxPoint(125, 290), wxSize(65, 40));
+
+	return m_btn;
+}
+
+wxTextCtrl* ButtonFactory::CreateTextBox()
+{
+	m_text1 = new wxTextCtrl(this, wxID_ANY, "", wxPoint(10, 65), wxSize(300, 30));
+
+	return m_text1;
 }
