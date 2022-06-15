@@ -47,7 +47,6 @@ CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSiz
 	m_btn = new wxButton(this, 10024, "", wxPoint(400, 400), wxSize(0, 0));
 
 
-
 	//Text box
 	m_text1 = new wxTextCtrl(this, wxID_ANY, "", wxPoint(10, 65), wxSize(300, 30));
 
