@@ -3,6 +3,7 @@
 
 #include "wx/wx.h"
 #include "CalUI.h"
+#include "ButtonFactory.h"
 
 
 
@@ -12,7 +13,7 @@ class CalApp : public wxApp
 	virtual bool OnInit();
 
 private:
-	CalUI* m_frame1 = nullptr;
+	ButtonFactory* m_frame1 = nullptr;
 
 public:
 	CalApp();
