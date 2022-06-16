@@ -13,6 +13,10 @@ ButtonFactory::ButtonFactory() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoin
 	ButtonFactory::CreateNumbers();
 	ButtonFactory::CreateTextBox();
 	ButtonFactory::CreateSolvers();
+	ButtonFactory::CreateMParenthasis();
+	ButtonFactory::CreateModifiers();
+	ButtonFactory::CreateNegative();
+
 
 	/*
 	//Clear and enter
@@ -95,6 +99,7 @@ wxButton* ButtonFactory::CreateDivideButton()
 wxButton* ButtonFactory::CreateNumbers()
 {
 	int ID = 10001;
+	m_btn = new wxButton(this, 10000, "0", wxPoint(50, 300), wxSize(70, 30));
 	for (int y = 250; y >= 150; y = y - 50)
 	{
 		for (int x = 50; x <= 150; x = x + 50)
@@ -119,4 +124,32 @@ wxTextCtrl* ButtonFactory::CreateTextBox()
 	m_text1 = new wxTextCtrl(this, wxID_ANY, "", wxPoint(10, 65), wxSize(300, 30));
 
 	return m_text1;
+}
+
+wxButton* ButtonFactory::CreateMParenthasis()
+{
+	m_btn = new wxButton(this, 10016, "mod", wxPoint(50, 100), wxSize(40, 30));
+	m_btn = new wxButton(this, 10017, "(", wxPoint(100, 100), wxSize(40, 30));
+	m_btn = new wxButton(this, 10018, ")", wxPoint(150, 100), wxSize(40, 30));
+
+	return m_btn;
+}
+
+wxButton* ButtonFactory::CreateModifiers()
+{
+	// bin, hex and dec
+	m_btn = new wxButton(this, 10019, "Bin", wxPoint(250, 100), wxSize(40, 30));
+	m_btn = new wxButton(this, 10020, "Hex", wxPoint(250, 150), wxSize(40, 30));
+	m_btn = new wxButton(this, 10021, "Dec", wxPoint(250, 200), wxSize(40, 30));
+
+	return m_btn;
+}
+
+wxButton* ButtonFactory::CreateNegative()
+{
+	//negative and .
+	m_btn = new wxButton(this, 10022, "Neg", wxPoint(250, 250), wxSize(40, 30));
+	m_btn = new wxButton(this, 10023, ".", wxPoint(200, 300), wxSize(40, 30));
+
+	return m_btn;
 }

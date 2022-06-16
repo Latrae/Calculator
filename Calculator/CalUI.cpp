@@ -7,26 +7,6 @@ wxEND_EVENT_TABLE()
 
 CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSize(700, 500))
 {
-
-
-
-
-	
-
-
-	//mod and parenthesis
-	m_btn = new wxButton(this, 10016, "mod", wxPoint(50, 100), wxSize(40, 30));
-	m_btn = new wxButton(this, 10017, "(", wxPoint(100, 100), wxSize(40, 30));
-	m_btn = new wxButton(this, 10018, ")", wxPoint(150, 100), wxSize(40, 30));
-
-	// bin, hex and dec
-	m_btn = new wxButton(this, 10019, "Bin", wxPoint(250, 100), wxSize(40, 30));
-	m_btn = new wxButton(this, 10020, "Hex", wxPoint(250, 150), wxSize(40, 30));
-	m_btn = new wxButton(this, 10021, "Dec", wxPoint(250, 200), wxSize(40, 30));
-	
-	//negative and .
-	m_btn = new wxButton(this, 10022, "Neg", wxPoint(250, 250), wxSize(40, 30));
-	m_btn = new wxButton(this, 10023, ".", wxPoint(200, 300), wxSize(40, 30));
 	
 	//Blank Button
 	m_btn = new wxButton(this, 10024, "", wxPoint(400, 400), wxSize(0, 0));
@@ -37,6 +17,8 @@ CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSiz
 	m_btn = ButtonFactory::ButtonFactory().CreateDivideButton();
 	m_btn = ButtonFactory::ButtonFactory().CreateNumbers();
 	m_btn = ButtonFactory::ButtonFactory().CreateSolvers();
+	m_btn = ButtonFactory::ButtonFactory().CreateMParenthasis();
+	m_btn = ButtonFactory::ButtonFactory().CreateNegative();
 
 
 	m_text1 = ButtonFactory::ButtonFactory().CreateTextBox();

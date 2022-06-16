@@ -21,7 +21,9 @@ public:
 	wxButton* CreateNumbers();
 	wxButton* CreateSolvers();
 	wxTextCtrl* CreateTextBox();
-
+	wxButton* CreateMParenthasis();
+	wxButton* CreateModifiers();
+	wxButton* CreateNegative();
 
 	wxDECLARE_EVENT_TABLE();
 };
