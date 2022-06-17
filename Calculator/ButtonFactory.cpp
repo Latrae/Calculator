@@ -27,8 +27,7 @@ ButtonFactory::ButtonFactory() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoin
 	m_btn = new wxButton(this, 10012, "+", wxPoint(200, 100), wxSize(40, 30));
 	m_btn = new wxButton(this, 10013, "-", wxPoint(200, 150), wxSize(40, 30));
 	m_btn = new wxButton(this, 10014, "*", wxPoint(200, 200), wxSize(40, 30));
-	m_btn = new wxButton(this, 10015, "/", wxPoint(200, 250), wxSize(40, 30));
-
+	m_btn = new wxButton(this, 10015, "/", wxPoint(200, 250), wxSize(40, 30))
 
 	//mod and parenthesis
 	m_btn = new wxButton(this, 10016, "mod", wxPoint(50, 100), wxSize(40, 30));
