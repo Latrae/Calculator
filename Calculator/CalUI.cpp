@@ -60,7 +60,8 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 		{
 			if (i == evt.GetId() - 10000 && i == 12)
 			{
-				number1 = _tstoi(m_text1->GetValue());
+				first = m_text1->GetValue();
+				number1 = wxAtoi(first);
 				//m_text1->AppendText('+');
 				m_text1->Clear();
 				operation = 1;
@@ -68,7 +69,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			}
 			else if (i == evt.GetId() - 10000 && i == 13)
 			{
-				number1 = _tstoi(m_text1->GetValue());
+				number1 = wxAtoi(m_text1->GetValue());
 				//m_text1->AppendText("-");
 				m_text1->Clear();
 				operation = 2;
@@ -76,7 +77,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			}
 			else if (i == evt.GetId() - 10000 && i == 14)
 			{
-				number1 = _tstoi(m_text1->GetValue());
+				number1 = wxAtoi(m_text1->GetValue());
 				//m_text1->AppendText("*");
 				m_text1->Clear();
 				operation = 3;
@@ -84,7 +85,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			}
 			else if (i == evt.GetId() - 10000 && i == 15)
 			{
-				number1 = _tstoi(m_text1->GetValue());
+				number1 = wxAtoi(m_text1->GetValue());
 				//m_text1->AppendText("/");
 				m_text1->Clear();
 				operation = 4;
@@ -95,7 +96,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 		{
 			if (i == 16 && i == evt.GetId() - 10000)
 			{
-				number1 = _tstoi(m_text1->GetValue());
+				number1 = wxAtoi(m_text1->GetValue());
 				//m_text1->AppendText("%");
 				m_text1->Clear();
 				operation = 5;
@@ -117,16 +118,19 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			if (i == 10 && i == evt.GetId() - 10000)
 			{
 				m_text1->Clear();
+				number1 = 0;
+				number2 = 0;
+				first = "";
 				break;
 			}
 			else if (i == 11 && i == evt.GetId() - 10000)
 			{
-				number2 = _tstoi(m_text1->GetValue());
+				first = m_text1->GetValue();
+				number2 = wxAtoi(first);
 				
-				m_text1->Clear();
 
 				if(operation == 1)
-					number1 = number1 + number2;
+					number1 = float(number1) + float(number2);
 				if (operation == 2)
 					number1 = number1 - number2;
 				if (operation == 3)
@@ -135,8 +139,14 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 					number1 = number1 / number2;
 				if (operation == 5)
 					number1 = (int)number1 % (int)number2;
+				
+				m_text1->Clear();
 
 				m_text1->SetValue(std::to_string(number1));
+
+				number1 = 0;
+				number2 = 0;
+				first = "";
 			}
 		}
 		else if (i == 23)

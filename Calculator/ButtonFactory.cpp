@@ -58,7 +58,7 @@ ButtonFactory::ButtonFactory() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoin
 
 ButtonFactory::~ButtonFactory()
 {
-
+	delete[] m_btn;
 }
 
 wxButton* ButtonFactory::CreateAddButton()
