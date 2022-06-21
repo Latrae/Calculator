@@ -2,7 +2,10 @@
 #include "wx/wx.h"
 //#include "CalApp.h"
 #include <string>
-
+#include <cstring>
+#include <sstream>
+#include "1.conversion_header.h"
+#include "1.convert.cpp"
 
 
 
@@ -17,12 +20,17 @@ public:
 public:
 	wxButton* m_btn = nullptr;
 	wxTextCtrl* m_text1 = nullptr;
-	int number1 = 0;
-	int number2 = 0;
+	double number = 0;
+	double number2 = 0;
 	int operation = 0;
-	std::string first = "";
-	std::string last = "";
 
+	//std::string 
+	//wxString first = "";
+	//std::string first = "";
+
+	std::vector<float> numbers;
+	std::vector<char> addition;
+	std::vector<char> multiplication;
 
 	wxDECLARE_EVENT_TABLE();
 };

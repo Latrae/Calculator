@@ -11,7 +11,7 @@ CalApp::CalApp()
 
 CalApp::~CalApp()
 {
-
+	//delete[] m_frame1;
 }
 
 bool CalApp::OnInit()

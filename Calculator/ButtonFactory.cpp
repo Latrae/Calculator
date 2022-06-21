@@ -69,8 +69,6 @@ wxButton* ButtonFactory::CreateAddButton()
 	return m_btn;
 }
 
-
-
 wxButton* ButtonFactory::CreateMinusButton()
 {
 	m_btn = new wxButton(this, 10013, "-", wxPoint(200, 150), wxSize(40, 30));
@@ -121,7 +119,7 @@ wxButton* ButtonFactory::CreateSolvers()
 wxTextCtrl* ButtonFactory::CreateTextBox()
 {
 	m_text1 = new wxTextCtrl(this, wxID_ANY, "", wxPoint(10, 65), wxSize(300, 30));
-
+	
 	return m_text1;
 }
 
