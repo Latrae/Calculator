@@ -1,6 +1,6 @@
 #include "CalUI.h"
 #include "ButtonFactory.h"
-
+#include "CalculatorProcessor.h"
 wxBEGIN_EVENT_TABLE(CalUI, wxFrame)
 	EVT_BUTTON(wxID_ANY, onButtonClicked)
 wxEND_EVENT_TABLE()
@@ -20,12 +20,7 @@ CalUI::CalUI() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(30, 30), wxSiz
 	m_btn = ButtonFactory::ButtonFactory().CreateMParenthasis();
 	m_btn = ButtonFactory::ButtonFactory().CreateNegative();
 
-
 	m_text1 = ButtonFactory::ButtonFactory().CreateTextBox();
-
-
-	
-
 
 	//m_text1 = new wxTextCtrl(this, wxID_ANY, "", wxPoint(10, 65), wxSize(300, 30));
 	
@@ -38,7 +33,6 @@ CalUI::~CalUI()
 	//delete m_text1;
 }
 
-
 //On button click
 void CalUI::onButtonClicked(wxCommandEvent& evt)
 {
@@ -49,7 +43,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 	//m_text1->AppendText(m_btn->GetLabel());
 	//AppendText();
 	//SetValue();
-	
+
 	for (int i = 0; i <= 30; i++)
 	{
 		if (i == (evt.GetId() - 10000) && i <= 9)
@@ -114,7 +108,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			{
 				//number1 = wxAtoi(m_text1->GetValue());
 				m_text1->GetValue().ToDouble(&number);
-				
+
 				m_text1->Clear();
 				m_text1->AppendText("%");
 				m_text1->Clear();
@@ -147,12 +141,12 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 				//first.append(m_text1->GetValue());
 				//std::string second = "890887";
 				//first.c_str();
-				
-				
-				
+
+
+
 				m_text1->GetValue().ToDouble(&number2);
 				//m_text1->GetValue().c_str();
-				
+
 
 				//number = second;
 				//second = number;
@@ -175,20 +169,20 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 					{ }*/
 
 				}
-				
 
-				
+				CalcProcessor* CalcProcessor = CalcProcessor::GetInstance();
+
 				if (operation == 1)
-					number = number + number2;
+					number = CalcProcessor->GetAddition(number, number2);
 				if (operation == 2)
-					number = number - number2;
+					number = CalcProcessor->GetSubtraction(number, number2);
 				if (operation == 3)
-					number = number * number2;
+					number = CalcProcessor->GetMultiplication(number, number2);
 				if (operation == 4)
-					number = number / number2;
+					number = CalcProcessor->GetDivision(number, number2);
 				if (operation == 5)
-					number = (int)number % (int)number2;
-
+					number = CalcProcessor->GetModulo((int)number, (int)number2);
+					
 
 				/*if (operation == 1)
 					number = (int)number + (int)number2;
@@ -201,7 +195,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 				if (operation == 5)
 					number = (int)number % (int)number2;
 					*/
-				
+
 				m_text1->Clear();
 
 				m_text1->SetValue(std::to_string(number));
@@ -239,14 +233,30 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			if (i == 20 && i == evt.GetId() - 10000)
 			{
 				int Hex = wxAtoi(m_text1->GetValue());
-				std::string HexNumber = "";
 				
+				std::string HexNumber = "";
+				while (Hex > 0)
+				{
+					int HexMod = Hex % 16;
+					if (HexMod < 10)
+						HexNumber = std::to_string(HexMod) + HexNumber;
+					else if (HexMod == 10) { HexNumber = "A" + HexNumber; }
+					else if (HexMod == 11) { HexNumber = "B" + HexNumber; }
+					else if (HexMod == 12) { HexNumber = "C" + HexNumber; }
+					else if (HexMod == 13) { HexNumber = "D" + HexNumber; }
+					else if (HexMod == 14) { HexNumber = "E" + HexNumber; }
+					else if (HexMod == 15) { HexNumber = "F" + HexNumber; }
+
+					Hex = Hex / 16;
+				}
+				HexNumber = "0x" + HexNumber;
+
 				//int Hex = stoi(HexNumber, nullptr, 16);
 				//int Hex = wxAtoi(m_text1->GetValue());
 				//strtol();
 				//strtoul();
 				m_text1->Clear();
-				m_text1->AppendText(std::to_string(Hex));
+				m_text1->AppendText(HexNumber);
 			}
 		}
 		else if (i == 21)
@@ -254,7 +264,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 			if (i == 21 && i == evt.GetId() - 10000)
 			{
 				std::string BaseNumber = "";
-				int Base = stoi(BaseNumber, nullptr , 10);
+				int Base = wxAtoi(m_text1->GetValue());
 
 				m_text1->Clear();
 				m_text1->AppendText(std::to_string(Base));
@@ -276,7 +286,7 @@ void CalUI::onButtonClicked(wxCommandEvent& evt)
 		{
 			if (i == 23 && i == evt.GetId() - 10000)
 			{
-				if(!m_text1->GetValue().Contains("."))
+				if (!m_text1->GetValue().Contains("."))
 					m_text1->AppendText(".");
 				break;
 			}
